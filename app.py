@@ -4,7 +4,8 @@ import streamlit as st
 with st.sidebar:
     #If you work locally you can add the api key in to secrets.toml file 
     try:
-        deepseek_api_key = "sk-0354b117e9114313923e8de889d03764"
+        # GET KEY FROM SECRETS
+        deepseek_api_key = st.secrets["deepseek_api_key"]
     except:
         st.error("No api key found")
     
