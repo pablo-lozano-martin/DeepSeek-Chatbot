@@ -1,14 +1,14 @@
 from openai import OpenAI
 import streamlit as st
+import os
 
 with st.sidebar:
     #If you work locally you can add the api key in to secrets.toml file 
-    try:
-        # GET KEY FROM SECRETS
-        deepseek_api_key = st.secrets["deepseek_api_key"]
-    except:
-        st.error("No api key found")
-    
+    if "DEEPSEEK_API_KEY" in st.secrets:
+        deepseek_api_key = st.secrets["DEEPSEEK_API_KEY"]
+    else:
+        deepseek_api_key = st.text_input("Deepseek API Key", key="api_key", type="password")
+
     model = st.selectbox(
         "Choose a model",
         options=["deepseek-chat"],
